@@ -26,11 +26,12 @@ Real-Tor aims to transform the traditional real estate market into a seamless, A
 
 ## Technology Used
 
+* IBM watsonx Assistant
 * Meta Llama models: Llama 3.1 70B
-* IBM watsonx Assistant 
-* GenericSuite
 * MongoDB Atlas
 * Python 3.10
+* Streamlit
+* GenericSuite
 
 ## Getting Started
 
@@ -70,19 +71,8 @@ PYTHON_VERSION=3.10
 #
 # Together AI
 TOGETHER_AI_API_KEY=
-# HuggingFace
-HUGGINGFACE_API_KEY=
-# RHYMES parameters
-RHYMES_ALLEGRO_API_KEY=
-RHYMES_ARIA_API_KEY=
 # OpenAI
 OPENAI_API_KEY=
-# Groq
-GROQ_API_KEY=
-# Ollama
-OLLAMA_BASE_URL=localhost:11434
-# Nvidia
-NVIDIA_API_KEY=
 #
 # Database parameters
 DB_TYPE=mongodb
@@ -90,8 +80,7 @@ DB_TYPE=mongodb
 #
 # MongoDB database parameters
 MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net
-MONGODB_DB_NAME=gsam_db
-MONGODB_COLLECTION_NAME=conversations
+MONGODB_DB_NAME=real-tor-dev
 #
 # JSON database parameters
 # JSON_DB_PATH=./db/conversations.json
@@ -111,7 +100,7 @@ make run
 
 ```bash
 # Without Make
-sh scripts/run_app.sh run
+sh ./public/scripts/run_app.sh run
 ```
 
 ## Usage
@@ -122,14 +111,15 @@ Go to your favorite Browser and open the URL provided by the application.
   [http://localhost:3000](http://localhost:3000)
 
 * Official App:<BR/>
-  [https://real-tor-app.fynapp.com/](https://real-tor-app.fynapp.com/)
+  [https://real-tor.streamlit.app/](https://real-tor.streamlit.app/)
 
-<!-->
 ## Screenshots
 
 Main Page
-![App Screenshot](./assets/screenshots/Screenshot%202024-11-10%20at%205.53.34 PM.png)
--->
+![App Screenshot](./assets/screenshots/Screenshot%202024-11-17%20at%2010.11.29 AM.png)
+
+Main Page with IBM watsonx assistan opened
+![App Screenshot](./assets/screenshots/Screenshot%202024-11-17%20at%2010.13.26 AM.png)
 
 ## Context
 
@@ -137,11 +127,13 @@ This project was developed as part of the [Conversational AI Hackathon with IBM 
 
 ![Hackathon banner image](./assets/ibm-watsonx-hackathon-official-banner.webp)
 
-- Project submission page: [GSAM](https://lablab.ai/event/ibm-watsonx-assistant/the-fynbots/real-tor)
+- Project submission page: [REAL-TOR](https://lablab.ai/event/ibm-watsonx-assistant/the-fynbots/real-tor)
 
-- Presentation video: [Conversational AI Hackathon with IBM watsonx Assistant - GSAM App Video Presentation](https://lablab.ai/event/ibm-watsonx-assistant/the-fynbots/real-tor)
+- Presentation video: [Conversational AI Hackathon with IBM watsonx Assistant - REAL-TOR App Video Presentation](https://lablab.ai/event/ibm-watsonx-assistant/the-fynbots/real-tor)
 
-- Presentation document: [Conversational AI Hackathon with IBM watsonx Assistant - GSAM App Maker Presentation](https://storage.googleapis.com/lablab-static-eu/presentations/submissions/xxx.pdf)
+<!--
+- Presentation document: [Conversational AI Hackathon with IBM watsonx Assistant - REAL-TOR App Maker Presentation](https://storage.googleapis.com/lablab-static-eu/presentations/submissions/xxx.pdf)
+-->
 
 - Team: [The FynBots](https://lablab.ai/event/ibm-watsonx-assistant/the-fynbots)
 
