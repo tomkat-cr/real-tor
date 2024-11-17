@@ -1,0 +1,22 @@
+{
+  "name": "real-tor_backend",
+  "version": "1.0.0",
+  "description": "real-tor (Real Estate AI Assistant) backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomkat-cr/real-tor.git"
+  },
+  "author": "Carlos J. Ramirez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomkat-cr/real-tor/issues"
+  },
+  "homepage": "https://github.com/tomkat-cr/real-tor#readme",
+  "dependencies": {
+    "genericsuite-be-scripts": "^1.0.12"
+  }
+}
