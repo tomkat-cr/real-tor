@@ -14,3 +14,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Fixes
 
 ### Breaks
+
+
+## 0.0.1 (2024-11-15)
+---
+
+### New
+Project started for the [Conversational AI Hackathon with IBM watsonx Assistant](https://lablab.ai/event/ibm-watsonx-assistant) organized by [Lablab.ai](https://lablab.ai) [GS-155].

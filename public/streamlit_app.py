@@ -1,29 +1,15 @@
 """
 VitexBrain App
 """
-# import os
 from dotenv import load_dotenv
 import uuid
 import html
 
 import streamlit as st
-# from streamlit_javascript import st_javascript
 
 from lib.codegen_streamlit_lib import StreamlitLib
 from lib.codegen_utilities import get_app_config
 from lib.codegen_utilities import log_debug
-
-# from src.codegen_schema_generator import JsonGenerator
-# from src.codegen_app_ideation import (
-#     show_ideation_form,
-#     show_ideation_from_prompt,
-#     get_ideation_form_config,
-#     get_ideation_from_prompt_config,
-# )
-# from src.codegen_buttons import (
-#     add_buttons_for_main_tab,
-#     add_buttons_for_code_gen_tab,
-# )
 
 DEBUG = True
 
@@ -43,13 +29,6 @@ def add_title():
     # https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
 
     with st.container():
-        # col = st.columns(
-        #     2, gap="small",
-        #     vertical_alignment="bottom")
-        # with col[0]:
-        #     st.image("./assets/real-tor-logo-500.png", width=200)
-        # with col[1]:
-        #     st.title(cgsl.get_title())
         st.image("./assets/real-tor-logo-500.png", width=200)
         st.title(cgsl.get_title())
 
@@ -98,11 +77,12 @@ def add_sidebar():
     with st.sidebar:
         app_desc = get_app_description()
         st.sidebar.write(app_desc)
-        # cgsl.data_management_components()
-        # data_management_container = st.empty()
-        # # Show the conversations in the side bar
-        # cgsl.show_conversations()
-    # return data_management_container
+        # Data management
+        cgsl.data_management_components()
+        data_management_container = st.empty()
+        # Show the conversations in the side bar
+        cgsl.show_conversations()
+    return data_management_container
 
 
 def add_main_content():
@@ -122,54 +102,12 @@ def add_main_content():
 
 
 def add_check_buttons_pushed(
-        result_container: st.container,
-        additional_result_container: st.container,
-        data_management_container: st.container,
-        parameters_container: st.container,
+        containers: dict,
         question: str):
     """
     Check buttons pushed
     """
     pass
-
-    # Process the generate_video button pushed
-    # if st.session_state.get("generate_video"):
-    #     cgsl.video_generation(result_container, question)
-
-    # # Process the generate_image button pushed
-    # if st.session_state.get("generate_image"):
-    #     cgsl.image_generation(result_container, question)
-
-    # # Process the generate_text button pushed
-    # if st.session_state.get("generate_text"):
-    #     cgsl.text_generation(result_container, question)
-
-    # # Process the generate_code button pushed
-    # if st.session_state.get("generate_code"):
-    #     process_json_and_code_generation(result_container, question)
-
-    # # Show the selected conversation's question and answer in the
-    # # main section
-    # for conversation in st.session_state.conversations:
-    #     if st.session_state.get(conversation['id']):
-    #         cgsl.show_conversation_content(
-    #             conversation['id'], result_container,
-    #             additional_result_container)
-    #         break
-
-    # # Perform data management operations
-    # if st.session_state.get("import_data"):
-    #     cgsl.import_data(data_management_container)
-
-    # if st.session_state.get("export_data"):
-    #     cgsl.export_data(data_management_container)
-
-    # if "dm_results" in st.session_state and st.session_state.dm_results:
-    #     cgsl.success_message(
-    #         "Operation result:\n\n" +
-    #         f"{cgsl.format_results(st.session_state.dm_results)}",
-    #         container=data_management_container)
-    #     st.session_state.dm_results = None
 
 
 def add_footer():
@@ -183,15 +121,6 @@ def add_footer():
 
 
 def page_1():
-    # Get suggested questions initial value
-    # with st.spinner("Loading App..."):
-    #     if "suggestion" not in st.session_state:
-    #         if cgsl.get_par_value("DYNAMIC_SUGGESTIONS", True):
-    #             cgsl.recycle_suggestions()
-    #         else:
-    #             st.session_state.suggestion = \
-    #                 cgsl.get_par_value("DEFAULT_SUGGESTIONS")
-
     # Main content
 
     # Title
@@ -209,30 +138,18 @@ def page_1():
 
     # Check buttons pushed
     # add_check_buttons_pushed(
-    #     result_container,
-    #     additional_result_container,
-    #     data_management_container,
-    #     parameters_container,
+    #     {
+    #         "result_container": result_container,
+    #         "additional_result_container": additional_result_container,
+    #         "data_management_container": data_management_container,
+    #         "parameters_container": parameters_container,
+    #     },
     #     question,
     # )
 
     # Footer
     with st.container():
         add_footer()
-
-
-# # Page 2: Video Gallery
-# def page_2():
-#     cgsl.show_gallery("video")
-#     # Footer
-#     add_footer()
-
-
-# # Page 3: Image Gallery
-# def page_3():
-#     cgsl.show_gallery("image")
-#     # Footer
-#     add_footer()
 
 
 # Main
@@ -255,8 +172,6 @@ def main():
     #     st.session_state.prompt_enhancement_flag = False
     # if "use_response_as_prompt_flag" not in st.session_state:
     #     st.session_state.use_response_as_prompt_flag = False
-    # if "use_embeddings_flag" not in st.session_state:
-    #     st.session_state.use_embeddings_flag = True
     # if "conversations" not in st.session_state:
     #     cgsl.update_conversations()
     # if "question_label" not in st.session_state:
@@ -273,17 +188,10 @@ def main():
     )
 
     # Query params to handle navigation
-    # page = st.query_params.get("page", cgsl.get_par_value("DEFAULT_PAGE"))
-
+    page = st.query_params.get("page", cgsl.get_par_value("DEFAULT_PAGE"))
     # Page navigation logic
-    # if page == "video_gallery":
-    #     page_2()
-    # elif page == "image_gallery":
-    #     page_3()
-    # else:
-    #     # Defaults to home
-    #     page_1()
-    page_1()
+    if not page or page == "home":
+        page_1()
 
 
 if __name__ == "__main__":

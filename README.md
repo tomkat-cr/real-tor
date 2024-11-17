@@ -6,9 +6,15 @@ Cutting-edge app to revolutionize real estate, simplifying processes for buyers 
 
 ## Introduction
 
-Real-Tor is a cutting-edge application designed to revolutionize the real estate market by simplifying the process for both buyers and sellers. Utilizing an advanced AI  Assistant technology, the app offers a conversational interface where users can enter their real estate preferences and requirements.
+<img 
+    align="right"
+    width="100"
+    height="100"
+    src="./assets/real-tor-logo-circled-500.png"
+    title="REAL-TOR logo by Carlos J. Ramirez"
+/>
 
-![Real-Tor logo](./assets/real-tor-logo-500.png)
+Real-Tor is a cutting-edge application designed to revolutionize the real estate market by simplifying the process for both buyers and sellers. Utilizing an advanced AI  Assistant technology, the app offers a conversational interface where users can enter their real estate preferences and requirements.
 
 ## Key Features
 
@@ -108,7 +114,7 @@ sh ./public/scripts/run_app.sh run
 Go to your favorite Browser and open the URL provided by the application.
 
 * Locally:<BR/>
-  [http://localhost:3000](http://localhost:3000)
+  [http://localhost:8503/](http://localhost:8503/)
 
 * Official App:<BR/>
   [https://real-tor.streamlit.app/](https://real-tor.streamlit.app/)
