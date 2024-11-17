@@ -30,7 +30,7 @@ requirements() {
 
 run() {
     install
-	streamlit run streamlit_app.py
+	streamlit run public/streamlit_app.py
 }
 
 ACTION=$1

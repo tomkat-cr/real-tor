@@ -42,4 +42,4 @@ qa: lint types tests format_check pycodestyle
 
 # Application Specific Commands
 run:
-	sh scripts/run_app.sh run
+	sh ./public/scripts/run_app.sh run

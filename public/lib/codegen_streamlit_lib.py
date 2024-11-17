@@ -1548,7 +1548,11 @@ class StreamlitLib:
         result = self.params.get(param_name, default_value)
         if result and isinstance(result, str) and result.startswith("[") \
            and result.endswith("]"):
-            result = read_file(f"config/{result[1:-1]}")
+            # result = read_file(f"config/{result[1:-1]}")
+            file_path = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                f"../config/{result[1:-1]}")
+            result = read_file(file_path)
         return result
 
     def get_par_or_env(self, param_name: str, default_value: str = None):
