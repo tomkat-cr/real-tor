@@ -10,7 +10,7 @@ python-multipart = "*"
 mangum = "*"
 fastapi-cors = "*"
 genericsuite = "*"
-genericsuite-ai = "*"
+genericsuite-ai = {file = "../../../mediabros_repos/github/genericsuite-be-ai"}
 
 [dev-packages]
 pytest = "*"

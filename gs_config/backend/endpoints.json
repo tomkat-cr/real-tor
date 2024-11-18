@@ -58,5 +58,50 @@
                 }
             }
         ]
+    },
+    {
+        "name": "users_preferences",
+        "url_prefix": "users_preferences",
+        "routes": [
+            {
+                "endpoint": "/",
+                "methods": ["GET", "POST", "PUT", "DELETE"],
+                "handler_type": "GenericEndpointHelper",
+                "view_func": "lib.util.generic_endpoint_builder.generic_route_handler",
+                "params": {
+                    "json_file": "users_preferences"
+                }
+            }
+        ]
+    },
+    {
+        "name": "properties",
+        "url_prefix": "properties",
+        "routes": [
+            {
+                "endpoint": "/",
+                "methods": ["GET", "POST", "PUT", "DELETE"],
+                "handler_type": "GenericEndpointHelper",
+                "view_func": "lib.util.generic_endpoint_builder.generic_route_handler",
+                "params": {
+                    "json_file": "properties"
+                }
+            }
+        ]
+    },
+    {
+        "name": "transactions",
+        "url_prefix": "transactions",
+        "routes": [
+            {
+                "endpoint": "/",
+                "methods": ["GET", "POST", "PUT", "DELETE"],
+                "handler_type": "GenericEndpointHelper",
+                "view_func": "lib.util.generic_endpoint_builder.generic_route_handler",
+                "params": {
+                    "json_file": "transactions"
+                }
+            }
+        ]
     }
 ]

@@ -1,9 +1,8 @@
 """
 VitexBrain App
 """
+import os
 from dotenv import load_dotenv
-import uuid
-import html
 
 import streamlit as st
 
@@ -37,25 +36,18 @@ def add_assistant_html():
     """
     Add the WatsonX assistant HTML embedded code
     """
-    # Reference:
-    # Injecting JS?
-    # https://discuss.streamlit.io/t/injecting-js/22651/5?u=carlos9
-    # The following snippet could help you solve your cross-origin issue:
-    div_id = uuid.uuid4()
     source = cgsl.get_par_value("ASSISTANT_JS")
+    vars_to_replace = [
+        "IBM_WATSONX_INTEGRATION_ID",
+        "IBM_WATSONX_REGION",
+        "IBM_WATSONX_SERVICE_INSTANCE_ID",
+    ]
+    for var in vars_to_replace:
+        source = source.replace(
+            f"{{{var}}}",
+            os.environ.get(var))
     log_debug(f"Assistant HTML source: {source}", debug=DEBUG)
-    st.markdown(f"""
-<div style="display:none" id="{div_id}">
-    <iframe src="javascript: \
-        var script = document.createElement('script'); \
-        script.type = 'text/javascript'; \
-        script.text = {html.escape(repr(source))}; \
-        var div = window.parent.document.getElementById('{div_id}'); \
-        div.appendChild(script); \
-        div.parentElement.parentElement.parentElement.style.display = 'none'; \
-    "/>
-</div>
-    """, unsafe_allow_html=True)
+    cgsl.add_js_script(source)
 
 
 def get_app_description():
@@ -165,19 +157,6 @@ def main():
         f"{st.session_state.app_name} v{st.session_state.app_version}"
     st.session_state.maker_name = cgsl.get_par_or_env("MAKER_MAME")
     st.session_state.app_icon = cgsl.get_par_or_env("APP_ICON", ":sparkles:")
-
-    # if "question" not in st.session_state:
-    #     st.session_state.question = ""
-    # if "prompt_enhancement_flag" not in st.session_state:
-    #     st.session_state.prompt_enhancement_flag = False
-    # if "use_response_as_prompt_flag" not in st.session_state:
-    #     st.session_state.use_response_as_prompt_flag = False
-    # if "conversations" not in st.session_state:
-    #     cgsl.update_conversations()
-    # if "question_label" not in st.session_state:
-    #     get_question_label()
-    # if "forms_config" not in st.session_state:
-    #     st.session_state.forms_config = {}
 
     # Streamlit app code
     st.set_page_config(

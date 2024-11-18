@@ -1,5 +1,5 @@
 """
-real-tor main
+REAL-TOR main
 """
 # import os
 from mangum import Mangum
@@ -31,15 +31,5 @@ app = create_app(app_name=f'{settings.APP_NAME.lower()}-backend',
 
 # Register AI endpoints
 app.include_router(ai_chatbot_endpoint.router, prefix='/ai')
-
-
-# @app.get("/")
-# def read_root():
-#     return {"Hello": "World"}
-
-
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
 
 handler = create_handler(app)

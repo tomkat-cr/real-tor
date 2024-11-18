@@ -104,6 +104,9 @@ module.exports = {
         // This solves the %PUBLIC_URL% issue in public/index.html file...
         new InterpolateHtmlPlugin({
             PUBLIC_URL: '',
+            IBM_WATSONX_INTEGRATION_ID: JSON.stringify(process.env.IBM_WATSONX_INTEGRATION_ID || ''),
+            IBM_WATSONX_REGION: JSON.stringify(process.env.IBM_WATSONX_REGION || ''),
+            IBM_WATSONX_SERVICE_INSTANCE_ID: JSON.stringify(process.env.IBM_WATSONX_SERVICE_INSTANCE_ID || ''),
         }),
     ],
     devServer: devServerConfig,

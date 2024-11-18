@@ -4,6 +4,8 @@ Streamlit UI library
 from typing import Any, Callable
 import os
 import time
+import uuid
+import html
 import json
 
 import streamlit as st
@@ -861,3 +863,25 @@ class StreamlitLib:
         if os.environ.get(param_name):
             return os.environ.get(param_name)
         return self.get_par_value(param_name, default_value)
+
+    def add_js_script(self, source: str):
+        """
+        Add a JS script to the page
+        """
+        # Reference:
+        # Injecting JS?
+        # https://discuss.streamlit.io/t/injecting-js/22651/5?u=carlos9
+        # The following snippet could help you solve your cross-origin issue:
+        div_id = uuid.uuid4()
+        st.markdown(f"""
+            <div style="display:none" id="{div_id}">
+                <iframe src="javascript: \
+                    var script = document.createElement('script'); \
+                    script.type = 'text/javascript'; \
+                    script.text = {html.escape(repr(source))}; \
+                    var div = window.parent.document.getElementById('{div_id}'); \
+                    div.appendChild(script); \
+                    div.parentElement.parentElement.parentElement.style.display = 'none'; \
+                "/>
+            </div>
+        """, unsafe_allow_html=True)
